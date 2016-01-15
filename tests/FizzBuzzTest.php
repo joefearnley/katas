@@ -53,8 +53,6 @@ class FizzBuzzTest extends PHPUnit_Framework_TestCase
 
     public function testItTranslatesASequenceIfNumbersForFizzbuzz()
     {
-        $this->fizzBuzz->printUpTo(100);
-
         $result = $this->fizzBuzz->executeUpTo(5);
         $this->assertEquals($result, [1, 2, 'fizz', 4, 'buzz']);
     }
