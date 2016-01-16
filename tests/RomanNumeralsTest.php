@@ -34,4 +34,13 @@ class RomanNumeralsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('XXXVI', $this->converter->convert(36));
     }
 
+    public function test_2012_converts_to_XXXVI()
+    {
+        $this->assertEquals('MMXII', $this->converter->convert(2012));
+    }
+
+    public function test_1996_converts_to_MCMXCVI()
+    {
+        $this->assertEquals('MCMXCVI', $this->converter->convert(1996));
+    }
 }

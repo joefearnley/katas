@@ -20,30 +20,23 @@ class RomanNumeralsConverter
 
     public function convert($number)
     {
-        $result = null;
-
-        if ($number < 1)
+        if ($number <= 0)
         {
             return null;
         }
 
-        // Find the highest decimal value v
-        // that is less than or equal to the decimal number x and
-        // its corresponding roman numeral n:
+        $result = null;
 
-        foreach ($this->lookupTable as $decimalValue => $romanNumeral)
+        while ($number > 0)
         {
-            if ($number <= 0)
+            foreach ($this->lookupTable as $decimalValue => $romanNumeral)
             {
-                break;
-            }
-
-            if ($number >= $decimalValue)
-            {
-                $result .= $romanNumeral;
-                $number -= $decimalValue;
-
-                echo $result . " " . $decimalValue . "\n";
+                if ($number >= $decimalValue)
+                {
+                    $result .= $romanNumeral;
+                    $number -= $decimalValue;
+                    break;
+                }
             }
         }
 
