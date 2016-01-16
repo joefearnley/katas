@@ -2,7 +2,7 @@
 
 class RomanNumeralsConverter
 {
-    private $lookupTable = [
+    private $numberToNumeralMap = [
     	1000 => 'M',
     	900 => 'CM',
     	500 => 'D',
@@ -18,7 +18,7 @@ class RomanNumeralsConverter
     	1 => 'I'
     ];
 
-    public function convert($number)
+    public function convertToNumeral($number)
     {
         if ($number <= 0)
         {
@@ -29,7 +29,7 @@ class RomanNumeralsConverter
 
         while ($number > 0)
         {
-            foreach ($this->lookupTable as $decimalValue => $romanNumeral)
+            foreach ($this->numberToNumeralMap as $decimalValue => $romanNumeral)
             {
                 if ($number >= $decimalValue)
                 {
@@ -37,6 +37,28 @@ class RomanNumeralsConverter
                     $number -= $decimalValue;
                     break;
                 }
+            }
+        }
+
+        return $result;
+    }
+
+    public function convertToNumber($numerals)
+    {
+        $result = 0;
+        $map = array_flip($this->numberToNumeralMap);
+
+        while (strlen($numerals))
+        {
+            $current = $numerals[0];
+            $next = isset($numerals[1]) ? $numerals[1] : null;
+
+            if (!is_null($next) && isset($map[$current . $next])) {
+                $result += $map[$current . $next];
+                $numerals = substr($numerals, 2);
+            } else {
+                $result += $map[$current];
+                $numerals = substr($numerals, 1);
             }
         }
 
