@@ -56,10 +56,11 @@ class RomanNumeralsConverter
             if (!is_null($next) && isset($map[$current . $next])) {
                 $result += $map[$current . $next];
                 $numerals = substr($numerals, 2);
-            } else {
-                $result += $map[$current];
-                $numerals = substr($numerals, 1);
+                continue;
             }
+
+            $result += $map[$current];
+            $numerals = substr($numerals, 1);
         }
 
         return $result;
