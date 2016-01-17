@@ -30,7 +30,8 @@ class FizzBuzz
 	{
 		$results = [];
 
-		for($i = 1; $i <= $number; $i++) {
+		for($i = 1; $i <= $number; $i++)
+		{
 			$results[] = $this->execute($i);
 		}
 
@@ -42,7 +43,8 @@ class FizzBuzz
 		$results = [];
 
 		echo "\n\nStarting...\n";
-		for($i = 1; $i <= $number; $i++) {
+		for($i = 1; $i <= $number; $i++)
+		{
 			echo $this->execute($i) . "\n";
 		}
 		echo "\nDone!\n\n";
