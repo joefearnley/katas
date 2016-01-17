@@ -11,49 +11,41 @@ class FizzBuzzTest extends PHPUnit_Framework_TestCase
 
     public function test1Translates1ForFizzbuzz()
     {
-        $result = $this->fizzBuzz->execute(1);
-        $this->assertEquals($result, 1);
+        $this->assertEquals(1, $this->fizzBuzz->execute(1));
     }
 
     public function test2Translates2ForFizzbuzz()
     {
-        $result = $this->fizzBuzz->execute(2);
-        $this->assertEquals($result, 2);
+        $this->assertEquals(2, $this->fizzBuzz->execute(2));
     }
 
     public function test3TranslatesFizzForFizzbuzz()
     {
-        $result = $this->fizzBuzz->execute(3);
-        $this->assertEquals($result, 'fizz');
+        $this->assertEquals('fizz', $this->fizzBuzz->execute(3));
     }
 
     public function test99TranslatesFizzForFizzbuzz()
     {
-        $result = $this->fizzBuzz->execute(99);
-        $this->assertEquals($result, 'fizz');
+        $this->assertEquals('fizz', $this->fizzBuzz->execute(99));
     }
 
     public function test5TranslatesBuzzForFizzbuzz()
     {
-        $result = $this->fizzBuzz->execute(5);
-        $this->assertEquals($result, 'buzz');
+        $this->assertEquals('buzz', $this->fizzBuzz->execute(5));
     }
 
     public function test10TranslatesBuzzForFizzbuzz()
     {
-        $result = $this->fizzBuzz->execute(10);
-        $this->assertEquals($result, 'buzz');
+        $this->assertEquals('buzz', $this->fizzBuzz->execute(10));
     }
 
     public function test15TranslatesFizzBuzzForFizzbuzz()
     {
-        $result = $this->fizzBuzz->execute(15);
-        $this->assertEquals($result, 'fizzbuzz');
+        $this->assertEquals('fizzbuzz', $this->fizzBuzz->execute(15));
     }
 
     public function testItTranslatesASequenceIfNumbersForFizzbuzz()
     {
-        $result = $this->fizzBuzz->executeUpTo(5);
-        $this->assertEquals($result, [1, 2, 'fizz', 4, 'buzz']);
+        $this->assertEquals([1, 2, 'fizz', 4, 'buzz'], $this->fizzBuzz->executeUpTo(5));
     }
 }

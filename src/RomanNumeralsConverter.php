@@ -46,20 +46,20 @@ class RomanNumeralsConverter
     public function convertToNumber($numerals)
     {
         $result = 0;
-        $map = array_flip($this->numberToNumeralMap);
+        $numeralsToNumberMap = array_flip($this->numberToNumeralMap);
 
         while (strlen($numerals))
         {
             $current = $numerals[0];
             $next = isset($numerals[1]) ? $numerals[1] : null;
 
-            if (!is_null($next) && isset($map[$current . $next])) {
-                $result += $map[$current . $next];
+            if (isset($numeralsToNumberMap[$current . $next])) {
+                $result += $numeralsToNumberMap[$current . $next];
                 $numerals = substr($numerals, 2);
                 continue;
             }
 
-            $result += $map[$current];
+            $result += $numeralsToNumberMap[$current];
             $numerals = substr($numerals, 1);
         }
 
