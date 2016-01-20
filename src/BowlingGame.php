@@ -15,36 +15,62 @@
 
 class BowlingGame
 {
-    protected $score;
     protected $rolls = [];
 
     public function roll($pins)
     {
+        if ($pins < 0)
+		{
+			throw new InvalidArgumentException;
+		}
+
         $this->rolls[] = $pins;
     }
 
     public function score()
     {
-        for ($frames = 1; $frames <= 10 ; $frames++) {
-            if ($this->isSpare())
+        $score = 0;
+        $roll = 0;
+
+        for ($frame = 1; $frame <= 10; $frame++)
+        {
+            if ($this->isStrike($roll))
             {
-                $score += 10 + $this->rolls[$roll + 2];
+                $score += 10 + $this->strikeBonus($roll);
+                $roll += 1;
             }
-            else if ($this->isStrike())
+            else if ($this->isSpare($roll))
             {
-                // do another thing
+                $score += 10 + $this->spareBonus($roll);
+                $roll += 2;
             }
             else
             {
-                // do this by defualt
+                $score += $this->rolls[$roll] + $this->rolls[$roll + 1];
+                $roll += 2;
             }
         }
 
-        return $this->score;
+        return $score;
     }
 
-    protected function isSpare()
+    protected function isSpare($roll)
     {
         return $this->rolls[$roll] + $this->rolls[$roll + 1] == 10;
+    }
+
+    protected function isStrike($roll)
+	{
+		return $this->rolls[$roll] == 10;
+	}
+
+    private function strikeBonus($roll)
+    {
+        return $this->rolls[$roll + 1] + $this->rolls[$roll + 2];
+    }
+
+    private function spareBonus($roll)
+    {
+        return $this->rolls[$roll + 2];
     }
 }
